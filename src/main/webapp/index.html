@@ -1,28 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Registration Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Application</title>
+    <style>
+        body {
+            background-color: #e6fbfb;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+        }
+        form {
+            background: #ffffff;
+            padding: 24px 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        td {
+            padding: 8px;
+        }
+        input[type="submit"] {
+            background-color: #008080;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #006666;
+        }
+    </style>
 </head>
-<body bgcolor ='#00ffff' style="align-content: center">
-	<h1>Welcome to Student Management System </h1>
-	<h2>Kindly Login to proceed</h2>
-	<form  method="post" action="./LoginCheck">
-
-		<table>
-			<tr>
-				<td> Admin Email </td>
-				<td> <input type="text" name="umail"> </td>
-			</tr>
-            <tr>
-				<td> User Password </td>
-				<td> <input type="password" name="upassword"> </td>
-			</tr>
-			<tr>
-				<td> <input type="submit" value="SignUp"> </td>
-			</tr>
-		</table>
-
-	</form>
+<body>
+<h1>Welcome to Student Management System</h1>
+<h2>Kindly Login to proceed</h2>
+<form method="post" action="./LoginCheck">
+    <table>
+        <tr>
+            <td><label for="umail">Admin Email</label></td>
+            <td><input type="text" id="umail" name="umail" autocomplete="username" required></td>
+        </tr>
+        <tr>
+            <td><label for="upassword">User Password</label></td>
+            <td><input type="password" id="upassword" name="upassword" autocomplete="current-password" required></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Login"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

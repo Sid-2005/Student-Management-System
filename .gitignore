@@ -16,6 +16,7 @@ mvnw
 mvnw.cmd
 .idea
 .mvn
+src/main/resources
 
 ### Eclipse ###
 .apt_generated
