@@ -1,3 +1,5 @@
+package Util;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -19,7 +21,7 @@ public class JdbcUtil {
             System.out.println("Driver Registered and Properties Loaded Successfully");
 
         } catch (ClassNotFoundException | IOException e) {
-            throw new RuntimeException("Failed to initialize JdbcUtil", e);
+            throw new RuntimeException("Failed to initialize Util.JdbcUtil", e);
         }
     }
 
