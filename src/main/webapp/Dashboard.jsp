@@ -84,11 +84,18 @@
             <button type="submit" class="btn">Display All Students</button>
         </form>
 
-        <button type="button" class="btn">Search Student</button>
+        <form action="searchStudent" method="GET" style="width: 100%;">
+            <button type="submit" class="btn">Search Student</button>
+        </form>
+
         <button type="button" class="btn">Update Student</button>
         <button type="button" class="btn">Add Student</button>
         <button type="button" class="btn">Delete Student</button>
-        <button type="button" class="btn">Log Out</button>
+
+        <form action="LogOut" method="GET" style="width: 100%;">
+            <button type="submit" class="btn">Log Out</button>
+        </form>
+
     </div>
 </div>
 

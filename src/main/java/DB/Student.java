@@ -69,4 +69,32 @@ public class Student {
         return studentList;
     }
 
+    public Student searchStudent(Student s) throws SQLException {
+
+        String query = "SELECT * FROM student_info WHERE Sid = ?";
+        PreparedStatement preparedStatement = null;
+        Connection connection = null;
+
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,s.getSid());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                s.setSname(resultSet.getString("Sname"));
+                s.setPhone_no(resultSet.getString("Phone_no"));
+                return s;
+            } else {
+                return null;
+            }
+
+        } finally {
+            JdbcUtil.CloseReso(preparedStatement, connection);
+        }
+
+    }
+
 }

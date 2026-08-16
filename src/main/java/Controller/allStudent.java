@@ -24,8 +24,6 @@ public class allStudent extends HttpServlet {
 
             req.getRequestDispatcher("displayStudent.jsp").forward(req,resp);
 
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
