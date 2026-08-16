@@ -115,7 +115,8 @@ public class Student {
 
         }
         catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Insert Failed (Likely Duplicate ID): " + e.getMessage());
+            return 0;
         }
         finally {
             JdbcUtil.CloseReso(preparedStatement,connection);
