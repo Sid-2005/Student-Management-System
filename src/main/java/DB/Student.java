@@ -1,12 +1,10 @@
 package DB;
 
 import Util.JdbcUtil;
-import com.mysql.cj.jdbc.JdbcConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class Student {
 
@@ -97,6 +95,31 @@ public class Student {
         }
 
     }
+    public int StudentExist(Student s) throws SQLException {
+
+        String query = "SELECT Sid FROM student_info WHERE Sid = ?";
+        PreparedStatement preparedStatement = null;
+        Connection connection = null;
+
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,s.getSid());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } finally {
+            JdbcUtil.CloseReso(preparedStatement, connection);
+        }
+
+    }
 
     public int AddStudent(Student student) throws SQLException {
 
@@ -120,6 +143,74 @@ public class Student {
         }
         finally {
             JdbcUtil.CloseReso(preparedStatement,connection);
+        }
+    }
+
+    public int UpdateStudent(Student student, int pos) throws SQLException {
+
+        String query = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = JdbcUtil.getConnection();
+
+            if(pos == 1)
+            {
+                query = "UPDATE student_info SET Sname = ? WHERE Sid = ?";
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1,student.getSname());
+                preparedStatement.setInt(2,student.getSid());
+            }
+            else if (pos == 2)
+            {
+                query = "UPDATE student_info SET Phone_no = ? WHERE Sid = ?";
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1,student.getPhone_no());
+                preparedStatement.setInt(2,student.getSid());
+            }
+            else {
+
+                query = "UPDATE student_info SET Sname = ?,Phone_no = ? WHERE Sid = ?";
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1,student.getSname());
+                preparedStatement.setString(2,student.getPhone_no());
+                preparedStatement.setInt(3,student.getSid());
+            }
+
+            return preparedStatement.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            System.out.println("Update Failed : " + e.getMessage());
+            return 0;
+        }
+        finally {
+            JdbcUtil.CloseReso(preparedStatement,connection);
+        }
+
+    }
+
+    public int deleteStudent(Student student) throws SQLException {
+        String query = "DELETE FROM student_info WHERE Sid = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, student.getSid());
+
+            return preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Delete Failed: " + e.getMessage());
+            return 0;
+        } finally {
+            JdbcUtil.CloseReso(preparedStatement, connection);
         }
     }
 }

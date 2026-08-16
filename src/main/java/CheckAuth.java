@@ -1,5 +1,3 @@
-// Model to check Authentication
-
 import Util.JdbcUtil;
 
 import java.sql.Connection;
