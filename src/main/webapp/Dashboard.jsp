@@ -89,7 +89,11 @@
         </form>
 
         <button type="button" class="btn">Update Student</button>
-        <button type="button" class="btn">Add Student</button>
+
+        <form action="AddStudent" method="GET" style="width: 100%;">
+            <button type="submit" class="btn">Add Student</button>
+        </form>
+
         <button type="button" class="btn">Delete Student</button>
 
         <form action="LogOut" method="GET" style="width: 100%;">

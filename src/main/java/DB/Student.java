@@ -6,6 +6,7 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Student {
 
@@ -97,4 +98,27 @@ public class Student {
 
     }
 
+    public int AddStudent(Student student) throws SQLException {
+
+        String query = "INSERT INTO student_info VALUES(?,?,?)";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,student.getSid());
+            preparedStatement.setString(2,student.getSname());
+            preparedStatement.setString(3,student.getPhone_no());
+
+            return preparedStatement.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            JdbcUtil.CloseReso(preparedStatement,connection);
+        }
+    }
 }
